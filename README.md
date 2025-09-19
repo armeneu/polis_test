@@ -1,66 +1,328 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Simple Blog with Comments
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-stack blog application built with Laravel backend and React frontend, containerized with Docker.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Backend (Laravel)**: REST API for articles and comments
+- **Frontend (React)**: Responsive UI with article listing and commenting
+- **Database**: MySQL with migrations and seed data
+- **Docker**: Containerized development environment
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### API Endpoints
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- `GET /api/articles` - List all articles
+- `GET /api/articles/{id}` - Get single article with comments
+- `POST /api/articles` - Create new article
+- `POST /api/articles/{id}/comments` - Add comment to article
 
-## Learning Laravel
+## Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Docker and Docker Compose
+- Node.js 18+ (for local development without Docker)
+- PHP 8.2+ (for local development without Docker)
+- Composer (for local development without Docker)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Quick Start with Docker
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Start the application**
+   ```bash
+   docker-compose up -d
+   ```
 
-## Laravel Sponsors
+2. **Run database migrations and seeding**
+   ```bash
+   docker-compose exec backend php artisan migrate --seed
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Build frontend assets**
+   ```bash
+   docker-compose exec backend npm run build
+   ```
 
-### Premium Partners
+4. **Access the application**
+   - Application: http://localhost:8000
+   - Backend API: http://localhost:8000/api
+   - MySQL: localhost:3306
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Manual Setup (without Docker)
 
-## Contributing
+### Backend Setup
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-## Code of Conduct
+2. **Configure environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Update database configuration in `.env`**
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=blog_db
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   ```
 
-## Security Vulnerabilities
+4. **Run migrations and seeding**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Install npm dependencies and build frontend**
+   ```bash
+   npm install
+   npm run build
+   ```
+
+6. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+## Database Commands
+
+### With Docker
+```bash
+# Run migrations
+docker-compose exec backend php artisan migrate
+
+# Run migrations with seeding
+docker-compose exec backend php artisan migrate --seed
+
+# Rollback migrations
+docker-compose exec backend php artisan migrate:rollback
+
+# Create new migration
+docker-compose exec backend php artisan make:migration create_table_name
+
+# Run seeder only
+docker-compose exec backend php artisan db:seed
+```
+
+### Without Docker
+```bash
+# Run migrations
+php artisan migrate
+
+# Run migrations with seeding
+php artisan migrate --seed
+
+# Rollback migrations
+php artisan migrate:rollback
+
+# Create new migration
+php artisan make:migration create_table_name
+
+# Run seeder only
+php artisan db:seed
+```
+
+## Development Commands
+
+```bash
+# Build frontend assets
+docker-compose exec backend npm run build
+
+# Run development server (with hot reload)
+docker-compose exec backend npm run dev
+
+# Install npm dependencies
+docker-compose exec backend npm install
+```
+
+## Project Structure
+
+```
+polis_test/
+├── app/                    # Laravel application
+│   ├── Models/            # Article and Comment models
+│   └── Http/Controllers/  # API controllers
+├── resources/
+│   ├── js/                # React frontend
+│   │   ├── components/    # React components
+│   │   ├── types.ts       # TypeScript interfaces
+│   │   ├── api.ts         # API service
+│   │   └── app.tsx        # Main React app
+│   ├── css/               # CSS files
+│   └── views/             # Blade templates
+├── routes/
+│   ├── web.php            # Frontend routes
+│   └── api.php            # API routes
+├── database/
+│   ├── migrations/        # Database migrations
+│   └── seeders/           # Database seeders
+├── storage/               # Storage directory
+├── backend.Dockerfile     # Docker configuration
+├── nginx-backend.conf     # Nginx configuration
+├── docker-compose.yml     # Docker compose configuration
+├── package.json           # Frontend dependencies
+├── composer.json          # PHP dependencies
+└── .env                   # Environment configuration
+```
+
+## API Documentation
+
+### Articles
+
+#### Get All Articles
+```http
+GET /api/articles
+```
+
+Response:
+```json
+[
+  {
+    "id": 1,
+    "title": "Welcome to Our Blog",
+    "content": "Article content...",
+    "created_at": "2024-01-01T00:00:00.000000Z",
+    "updated_at": "2024-01-01T00:00:00.000000Z",
+    "comments": []
+  }
+]
+```
+
+#### Get Single Article
+```http
+GET /api/articles/{id}
+```
+
+Response:
+```json
+{
+  "id": 1,
+  "title": "Welcome to Our Blog",
+  "content": "Article content...",
+  "created_at": "2024-01-01T00:00:00.000000Z",
+  "updated_at": "2024-01-01T00:00:00.000000Z",
+  "comments": [
+    {
+      "id": 1,
+      "article_id": 1,
+      "author_name": "John Doe",
+      "content": "Great article!",
+      "created_at": "2024-01-01T00:00:00.000000Z",
+      "updated_at": "2024-01-01T00:00:00.000000Z"
+    }
+  ]
+}
+```
+
+#### Create Article
+```http
+POST /api/articles
+Content-Type: application/json
+
+{
+  "title": "New Article",
+  "content": "Article content..."
+}
+```
+
+Response:
+```json
+{
+  "title": "New Article",
+  "content": "Article content...",
+  "updated_at": "2024-01-01T00:00:00.000000Z",
+  "created_at": "2024-01-01T00:00:00.000000Z",
+  "id": 2
+}
+```
+
+### Comments
+
+#### Add Comment to Article
+```http
+POST /api/articles/{id}/comments
+Content-Type: application/json
+
+{
+  "author_name": "John Doe",
+  "content": "Great article!"
+}
+```
+
+Response:
+```json
+{
+  "article_id": 1,
+  "author_name": "John Doe",
+  "content": "Great article!",
+  "updated_at": "2024-01-01T00:00:00.000000Z",
+  "created_at": "2024-01-01T00:00:00.000000Z",
+  "id": 1
+}
+```
+
+## Development
+
+### Running Tests
+
+```bash
+# Backend tests
+docker-compose exec backend php artisan test
+
+# Frontend tests
+npm test
+```
+
+### Debugging
+
+```bash
+# View logs
+docker-compose logs backend
+docker-compose logs nginx
+docker-compose logs mysql
+
+# Access containers
+docker-compose exec backend bash
+docker-compose exec mysql mysql -u blog_user -p blog_db
+```
+
+### Stopping the Application
+
+```bash
+# Stop and remove containers
+docker-compose down
+
+# Stop containers (keep data)
+docker-compose stop
+
+# Remove volumes (including database data)
+docker-compose down -v
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Port conflicts**: Change ports in `docker-compose.yml` if 8000 or 3306 are already in use
+2. **Database connection errors**: Ensure MySQL container is running and environment variables are correct
+3. **Asset build errors**: Run `npm install` and `npm run build` to rebuild frontend assets
+
+### Reset Database
+
+```bash
+# With Docker
+docker-compose exec backend php artisan migrate:fresh --seed
+
+# Build frontend assets after changes
+docker-compose exec backend npm run build
+
+# Without Docker
+php artisan migrate:fresh --seed
+npm run build
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open source and available under the [MIT License](LICENSE).

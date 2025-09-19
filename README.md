@@ -7,7 +7,7 @@ A full-stack blog application built with Laravel backend and React frontend, con
 - **Backend (Laravel)**: REST API for articles and comments
 - **Frontend (React)**: Responsive UI with article listing and commenting
 - **Database**: MySQL with migrations and seed data
-- **Docker**: Containerized development environment
+- **Docker**: Containerized development environment with automatic dependency installation
 
 ### API Endpoints
 
@@ -30,20 +30,12 @@ A full-stack blog application built with Laravel backend and React frontend, con
    docker-compose up -d
    ```
 
-2. **Run database migrations and seeding**
-   ```bash
-   docker-compose exec backend php artisan migrate --seed
-   ```
-
-3. **Build frontend assets**
-   ```bash
-   docker-compose exec backend npm run build
-   ```
-
-4. **Access the application**
+2. **Access the application**
    - Application: http://localhost:8000
    - Backend API: http://localhost:8000/api
    - MySQL: localhost:3306
+
+**Note**: Dependencies (PHP packages, Node.js modules) are automatically installed during the Docker container startup. Database migrations and seeders are also automatically executed.
 
 ## Manual Setup (without Docker)
 
@@ -90,11 +82,14 @@ A full-stack blog application built with Laravel backend and React frontend, con
 
 ### With Docker
 ```bash
-# Run migrations
+# Run migrations (automatically done on first start)
 docker-compose exec backend php artisan migrate
 
-# Run migrations with seeding
+# Run migrations with seeding (automatically done on first start)
 docker-compose exec backend php artisan migrate --seed
+
+# Fresh migrations with seeding
+docker-compose exec backend php artisan migrate:fresh --seed
 
 # Rollback migrations
 docker-compose exec backend php artisan migrate:rollback
@@ -113,6 +108,9 @@ php artisan migrate
 
 # Run migrations with seeding
 php artisan migrate --seed
+
+# Fresh migrations with seeding
+php artisan migrate:fresh --seed
 
 # Rollback migrations
 php artisan migrate:rollback
@@ -157,11 +155,13 @@ polis_test/
 │   └── api.php            # API routes
 ├── database/
 │   ├── migrations/        # Database migrations
+│   ├── factories/         # Model factories
 │   └── seeders/           # Database seeders
 ├── storage/               # Storage directory
 ├── backend.Dockerfile     # Docker configuration
 ├── nginx-backend.conf     # Nginx configuration
 ├── docker-compose.yml     # Docker compose configuration
+├── init.sh                # Initialization script for Docker
 ├── package.json           # Frontend dependencies
 ├── composer.json          # PHP dependencies
 └── .env                   # Environment configuration
@@ -308,6 +308,7 @@ docker-compose down -v
 1. **Port conflicts**: Change ports in `docker-compose.yml` if 8000 or 3306 are already in use
 2. **Database connection errors**: Ensure MySQL container is running and environment variables are correct
 3. **Asset build errors**: Run `npm install` and `npm run build` to rebuild frontend assets
+4. **Missing dependencies**: Dependencies are automatically installed during Docker container startup
 
 ### Reset Database
 
@@ -322,6 +323,19 @@ docker-compose exec backend npm run build
 php artisan migrate:fresh --seed
 npm run build
 ```
+
+## Recent Improvements
+
+### Docker Improvements
+- Automatic installation of PHP and Node.js dependencies during container startup
+- Automatic database migration and seeding on first run
+- Improved handling of Node.js version compatibility issues
+- Fixed issues with rollup module architecture compatibility
+
+### Code Improvements
+- Fixed UserFactory to properly use Faker instance
+- Enhanced error handling in React components
+- Improved database connection handling
 
 ## License
 

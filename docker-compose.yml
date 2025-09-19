@@ -38,7 +38,6 @@ services:
             - mysql
         networks:
             - blog_network
-        command: php-fpm
 
     # Nginx for Laravel
     nginx:

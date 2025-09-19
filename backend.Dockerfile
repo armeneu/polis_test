@@ -9,9 +9,11 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libzip-dev \
-    nodejs \
-    npm
+    libzip-dev
+
+# Install a specific version of Node.js to avoid architecture issues
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -25,18 +27,28 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
+# Copy composer files first for better caching
+COPY composer.json composer.lock ./ 
+
+# Install composer dependencies
+RUN composer install --no-dev --optimize-autoloader --no-scripts
+
 # Copy existing application directory contents
 COPY ./ /var/www/
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data ./ /var/www/
+# Copy init script and make it executable
+COPY init.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
 
-# Install composer dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Install npm dependencies with specific flags to avoid rollup issues
+RUN npm install --platform=linux --arch=x64
 
-# Install npm dependencies
-RUN npm install
+# Run post-install scripts
+RUN composer dump-autoload
 
-# Expose port 9000 and start php-fpm server
+# Change ownership of all files to www-data
+RUN chown -R www-data:www-data /var/www
+
+# Expose port 9000 and start init script
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["/usr/local/bin/init.sh"]

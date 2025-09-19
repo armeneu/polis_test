@@ -30,7 +30,22 @@ A full-stack blog application built with Laravel backend and React frontend, con
    docker-compose up -d
    ```
 
-2. **Access the application**
+2. **For new server deployments (rebuilds the images)**
+   ```bash
+   docker-compose up -d --build
+   ```
+
+3. **Run database migrations (if needed)**
+   ```bash
+   docker-compose exec backend php artisan migrate
+   ```
+
+4. **Reset and seed database (useful for new deployments)**
+   ```bash
+   docker-compose exec backend php artisan migrate:fresh --seed
+   ```
+
+5. **Access the application**
    - Application: http://localhost:8000
    - Backend API: http://localhost:8000/api
    - MySQL: localhost:3306

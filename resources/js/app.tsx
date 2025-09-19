@@ -62,7 +62,7 @@ function App() {
             <header className="app-header">
                 <div className="container">
                     <h1 className="app-title">
-                        <Link to="/">Simple Blog</Link>
+                        <Link to="/">Polis Online Blog</Link>
                     </h1>
                     <nav className="app-nav">
                         <Link to="/" className="nav-link">

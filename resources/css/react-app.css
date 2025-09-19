@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Global Styles */
 * {
     box-sizing: border-box;
@@ -5,19 +7,17 @@
 
 body {
     margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #f5f5f5;
-    color: #333;
+    color: #3d3d3b;
 }
 
 code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: 'Montserrat', source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .container {
@@ -28,7 +28,7 @@ code {
 
 /* Header Styles */
 .app-header {
-    background-color: #2c3e50;
+    background-color: #3d3d3b;
     color: white;
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -43,6 +43,7 @@ code {
 .app-title {
     margin: 0;
     font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .app-title a {
@@ -56,15 +57,18 @@ code {
 }
 
 .nav-link {
-    color: white;
+    color: #3d3d3b;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: background-color 0.2s;
+    background-color: #00e646;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #00cc3f;
 }
 
 /* Main Content */
@@ -80,6 +84,7 @@ code {
     text-align: center;
     padding: 2rem;
     font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .error {
@@ -92,6 +97,7 @@ code {
     border: 1px solid #c3e6cb;
     border-radius: 4px;
     margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .error-message {
@@ -101,6 +107,7 @@ code {
     border-radius: 4px;
     margin-bottom: 1rem;
     border: 1px solid #feb2b2;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Article List */
@@ -118,6 +125,7 @@ code {
     transition:
         transform 0.2s,
         box-shadow 0.2s;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .article-card:hover {
@@ -128,27 +136,31 @@ code {
 .article-title {
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .article-title a {
-    color: #2c3e50;
+    color: #3d3d3b;
     text-decoration: none;
 }
 
 .article-title a:hover {
-    color: #3498db;
+    color: #00e646;
 }
 
 .article-date {
     color: #7f8c8d;
     font-size: 0.9rem;
     margin: 0 0 1rem 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .article-preview {
     margin: 0 0 1rem 0;
     line-height: 1.6;
-    color: #555;
+    color: #3d3d3b;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .article-meta {
@@ -157,10 +169,13 @@ code {
     align-items: center;
     font-size: 0.9rem;
     color: #7f8c8d;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-count {
     font-weight: 500;
+    color: #00e646;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Article Detail */
@@ -169,13 +184,15 @@ code {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .back-link {
-    color: #3498db;
+    color: #00e646;
     text-decoration: none;
     margin-bottom: 1rem;
     display: inline-block;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .back-link:hover {
@@ -189,20 +206,24 @@ code {
 .article-content {
     line-height: 1.8;
     font-size: 1.1rem;
-    color: #333;
+    color: #3d3d3b;
     white-space: pre-wrap;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Comments Section */
 .comments-section {
     border-top: 1px solid #e1e8ed;
     padding-top: 2rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comments-title {
     margin: 0 0 1.5rem 0;
     font-size: 1.3rem;
-    color: #2c3e50;
+    color: #3d3d3b;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-form {
@@ -210,11 +231,14 @@ code {
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-form h3 {
     margin: 0 0 1rem 0;
-    color: #2c3e50;
+    color: #3d3d3b;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form-group {
@@ -228,14 +252,15 @@ code {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1rem;
-    font-family: inherit;
+    font-family: 'Montserrat', inherit;
+    color: #3d3d3b;
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    border-color: #00e646;
+    box-shadow: 0 0 0 3px rgba(0, 230, 70, 0.1);
 }
 
 .form-textarea {
@@ -244,18 +269,20 @@ code {
 }
 
 .submit-button {
-    background-color: #3498db;
-    color: white;
+    background-color: #00e646;
+    color: #3d3d3b;
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .submit-button:hover:not(:disabled) {
-    background-color: #2980b9;
+    background-color: #00cc3f;
 }
 
 .submit-button:disabled {
@@ -273,6 +300,7 @@ code {
     cursor: pointer;
     margin-right: 1rem;
     transition: background-color 0.2s;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .cancel-button:hover:not(:disabled) {
@@ -295,7 +323,8 @@ code {
     background: #f8f9fa;
     padding: 1rem;
     border-radius: 6px;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid #00e646;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-header {
@@ -307,18 +336,21 @@ code {
 
 .comment-author {
     font-weight: 600;
-    color: #2c3e50;
+    color: #3d3d3b;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-date {
     color: #7f8c8d;
     font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .comment-content {
     margin: 0;
     line-height: 1.5;
-    color: #555;
+    color: #3d3d3b;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Article Form */
@@ -327,11 +359,14 @@ code {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .article-form h1 {
     margin: 0 0 2rem 0;
-    color: #2c3e50;
+    color: #3d3d3b;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form {
@@ -343,5 +378,6 @@ code {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: #3d3d3b;
+    font-family: 'Montserrat', sans-serif;
 }

@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev
 
-# Install a specific version of Node.js to avoid architecture issues
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+# Install Node.js 20 to meet Vite requirements
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 # Clear cache
